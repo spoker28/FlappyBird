@@ -35,7 +35,6 @@ ACurrentPlayer::ACurrentPlayer()
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ACurrentPlayer::OnOverlapBegin);
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	//CameraComponent->SetupAttachment(RootComponent);
 	CameraComponent->SetRelativeLocation(FVector(300.0f, -630.0f, 0.0f));
 	CameraComponent->SetRelativeRotation(FRotator(0.0f, 180.0f, 0.0f));
 
@@ -109,7 +108,7 @@ void ACurrentPlayer::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent,
 		}
 		IsAlive = false;
 		GetWorldTimerManager().SetTimer(Timer, this, &ACurrentPlayer::RotatePlayerAfterDeath, 0.1f, true, 0.0f);
-	} else if (OtherComp->ComponentHasTag(FName("Score up"))) {
+	} else if (OtherComp->ComponentHasTag(FName("Score up")) && IsAlive) {
 		UpdateScore();
 	}
 }
