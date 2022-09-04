@@ -17,6 +17,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Sound/SoundCue.h"
 #include "TimerManager.h"
+#include "Camera/CameraComponent.h"
 
 #include "CurrentPlayer.generated.h"
 
@@ -38,6 +39,8 @@ public:
 		bool IsPlayerStarted;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Sound")
 		USoundCue* JumpSoundCue;
+	UPROPERTY(EditAnywhere)
+		UCameraComponent* CameraComponent;
 
 	FTimerHandle Timer;
 

@@ -27,12 +27,18 @@ ACurrentPlayer::ACurrentPlayer()
 	}
 
 	GetSprite()->SetupAttachment(GetCapsuleComponent());
-	GetSprite()->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));
+	GetSprite()->SetRelativeRotation(FRotator(0.0f, 0.0f, 0.0f));
 	GetSprite()->SetRelativeScale3D(FVector(2.5f, 2.5f, 2.5f));
 	ConstructorHelpers::FObjectFinder<UPaperFlipbook> FlipbookAssetObj(TEXT("PaperFlipbook'/Game/Flipbooks/Player_Flipbook.Player_Flipbook'"));
 	GetSprite()->SetFlipbook(FlipbookAssetObj.Object);
 
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this, &ACurrentPlayer::OnOverlapBegin);
+
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	//CameraComponent->SetupAttachment(RootComponent);
+	CameraComponent->SetRelativeLocation(FVector(300.0f, -630.0f, 0.0f));
+	CameraComponent->SetRelativeRotation(FRotator(0.0f, 180.0f, 0.0f));
+
 
 }
 

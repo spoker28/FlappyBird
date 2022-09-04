@@ -24,9 +24,12 @@ class FLAPPYBIRD_API AFlappyBirdGameModeBase : public AGameModeBase
 public:
 	AFlappyBirdGameModeBase();
 
+	UPROPERTY(EditAnywhere)
+		AActor* Camera;
+
 
 protected:
 
 
-
+private:
 };
